@@ -97,6 +97,21 @@ def genCommand(char, command):
         command.rFR -= 25
         if command.rFR < 0:
             command.rFR = 0
+            
+    if char == 'q':
+        command.rICF = 1
+        
+    if char == 'm':
+        command.rICF = 0
+        command.rACT = 1
+        command.rGTO = 1
+        command.rSPA = 255
+        command.rFRA = 150
+        command.rSPB = 255
+        command.rFRB = 150
+        command.rSPC = 255
+        command.rFRC = 150
+
 
     return command
         
@@ -111,7 +126,7 @@ def askForCommand(command):
     currentCommand += ', rPR = '   + str(command.rPR )
     currentCommand += ', rSP = '   + str(command.rSP )
     currentCommand += ', rFR = '   + str(command.rFR )
-
+    currentCommand += ', rICF = '  + str(command.rICF)
 
     print currentCommand
 
@@ -125,6 +140,8 @@ def askForCommand(command):
     strAskForCommand += 'l: Slower\n'
     strAskForCommand += 'i: Increase force\n'
     strAskForCommand += 'd: Decrease force\n'
+    strAskForCommand += 'q: Individual Control\n'
+    strAskForCommand += 'm: Basic Control\n'
     
     strAskForCommand += '-->'
 
